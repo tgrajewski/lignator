@@ -5,9 +5,6 @@ const fs = require('fs');
 const path = require('path');
 
 
-const log = console.log.bind(console);
-
-
 function _readdir(dir) {
     var warn = false;
     while (true)
@@ -19,11 +16,11 @@ function _readdir(dir) {
             if (e.code === 'EPERM')
                 fs.chmodSync(dir, 0o777);
 
-            if (!warn && rmtree.log) {
-                if (rmtree.log === log)
-                    rmtree.log(`Waiting for '${dir}' to be scanned`);
+            if (!warn && lignator.log) {
+                if (lignator.log === log)
+                    lignator.log(`Waiting for '${dir}' to be scanned`);
                 else
-                    rmtree.log(dir, e);
+                    lignator.log(dir, e);
                 warn = true;
             }
         }
@@ -41,18 +38,18 @@ function _rmdir(dir) {
             if (e.code === 'EPERM')
                 fs.chmodSync(dir, 0o777);
 
-            if (!warn && rmtree.log) {
-                if (rmtree.log === log)
-                    rmtree.log(`Waiting for '${dir}' to be removed`);
+            if (!warn && lignator.log) {
+                if (lignator.log === log)
+                    lignator.log(`Waiting for '${dir}' to be removed`);
                 else
-                    rmtree.log(dir, e);
+                    lignator.log(dir, e);
                 warn = true;
             }
         }
 }
 
 
-function rmtree(root, removeRoot=true) {
+function remove(root, removeRoot=true) {
     var files = _readdir(root);
     var lastWarn = -1;
     var count = 0;
@@ -61,7 +58,7 @@ function rmtree(root, removeRoot=true) {
         var file = files[i];
         var name = path.join(root, file.name);
         if (file.isDirectory())
-            count += rmtree(name, true);
+            count += remove(name, true);
         else
             try {
                 fs.unlinkSync(name);
@@ -72,11 +69,11 @@ function rmtree(root, removeRoot=true) {
                 if (e.code === 'EPERM')
                     fs.chmodSync(name, 0o777);
 
-                if (i !== lastWarn && rmtree.log) {
-                    if (rmtree.log === log)
-                        rmtree.log(`Waiting for '${name}' to be removed`);
+                if (i !== lastWarn && lignator.log) {
+                    if (lignator.log === log)
+                        lignator.log(`Waiting for '${name}' to be removed`);
                     else
-                        rmtree.log(name, e);
+                        lignator.log(name, e);
                     lastWarn = i;
                 }
                 i -= 1;
@@ -90,7 +87,11 @@ function rmtree(root, removeRoot=true) {
 }
 
 
-rmtree.log = log;
+const log = console.log.bind(console);
+const lignator = {
+    'remove': remove,
+    'log': log
+};
 
 
-module.exports = rmtree;
+module.exports = lignator;

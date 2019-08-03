@@ -1,13 +1,15 @@
 {
-  "name": "@tgrajewski/rmtree",
-  "version": "1.0.1",
+  "name": "lignator",
+  "version": "1.0.2",
   "description": "Ultra-fast and fail-proof removal of big directory trees synchronously (a lot faster than async).",
-  "main": "rmtree.js",
-  "repository": "git://github.com/tgrajewski/rmtree.git",
+  "main": "lignator.js",
+  "repository": "git://github.com/tgrajewski/lignator.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": "./bin.js",
+  "bin": {
+    "lignator-remove": "./bin.js"
+  },
   "keywords": [
     "rmtree",
     "rmdir"
