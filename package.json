@@ -1,5 +1,5 @@
 {
-  "name": "rmtree",
+  "name": "@tgrajewski/rmtree",
   "version": "1.0.0",
   "description": "Ultra-fast and fail-proof removal of big directory trees synchronously (a lot faster than async).",
   "main": "rmtree.js",

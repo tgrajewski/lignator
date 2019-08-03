@@ -1,12 +1,23 @@
 # rmtree
 
-Removes directory trees ultra-fast synchronously (compared async code).
-No dependencies.
-
 > 4,36 GB of data, 28 042 files, 4 217 folders on Windows removed in 15 seconds
 > vs rimraf's 60 seconds on old HDD.
 
-Install with `npm install rmtree`, or just drop `rmtree.js` somewhere.
+Removes directory trees ultra-fast synchronously (compared async code).
+No dependencies.
+
+Install with `npm install @tgrajewski/rmtree`, or just drop `rmtree.js` somewhere.
+
+Example usage:
+```javascript
+const rmtree = require('@tgrajewski/rmtree');
+
+// Removes local directory `build` and returns number of files removed
+rmtree('build');
+
+// Remove only contents of `build`, not the directory itself
+rmtree('build', false);
+```
 
 
 ## API
@@ -24,17 +35,6 @@ because files aren't removed instantaneously or permissions might be
 insufficient or files might be locked by other processes.
 
 Returns number of files and directories removed.
-
-Example:
-```javascript
-const rmtree = require('rmtree');
-
-// Removes local directory `build` and returns number of files removed
-rmtree('build');
-
-// Remove only contents of `build`, not the directory itself
-rmtree('build', false);
-```
 
 *Note:* In rare cases files might be still visible in Windows Explorer after
 successfull call of `rmtree(...)`. These files are usually locked by other
