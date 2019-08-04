@@ -3,8 +3,8 @@
 > 4,36 GB of data, 28 042 files, 4 217 folders on Windows removed in 15 seconds
 > vs rimraf's 60 seconds on old HDD.
 
-Removes directory trees ultra-fast synchronously (compared async code).
-No dependencies.
+Removes directory trees ultra-fast synchronously (compared to async code).
+No extra dependencies. Node.js v10+ required.
 
 Install with `npm install lignator`, or just drop `lignator.js` somewhere.
 
