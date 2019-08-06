@@ -1,4 +1,4 @@
-# Lignator - removes directory trees
+# Lignator - removes directory trees *FAST*
 
 > 4,36 GB of data, 28 042 files, 4 217 folders on Windows removed in 15 seconds
 > vs rimraf's 60 seconds on old HDD.
